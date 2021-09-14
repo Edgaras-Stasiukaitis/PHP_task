@@ -1,10 +1,13 @@
-<?php include 'controllers/city_create.php'; ?>
+<?php 
+	$controller = new city_controller($this->model);
+	$errors = $controller->createAction($module, $action, $pageId, $search, $order, $from, $to, $countryID);
+?>
 <div class="d-flex justify-content-between mt-3">
 	<a class="btn btn-secondary ml-3" style="width:150px;" href="index.php?module=country&action=list" role="button">Atgal į šalis</a>
 	<a class="btn btn-warning mr-3" style="width:150px;" href="index.php?module=city&action=list&countryID=<?php echo $countryID; ?>" role="button">Išvalyti filtrus</a>
 </div>
 <div class="container pt-2">
-	<h1><center><?php echo $CitiesObj->getCountryName($countryID) ?></center></h1>
+	<h1><center><?php echo $this->model->getCountryName($countryID) ?></center></h1>
 	<form method="post">
 		<div class="form-row pt-5">
 		  <div class="form-group col-md-3">

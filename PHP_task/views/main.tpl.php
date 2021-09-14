@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <?php
 	if(isset($_POST['upload']))
-		include 'controllers/upload_file.php';
+		include 'utils/upload_file.php';
 ?>
 <html>
 	<head>
@@ -31,6 +31,10 @@
 			</form>
 		  </div>
 		</nav>
-		<?php file_exists($actionFile) ? include $actionFile : include 'controllers/country_list.php'; ?>
+		<?php
+			file_exists($actionFile) ? include $actionFile : include 'controllers/country_controller.php';
+			$controller = new $controllerName($model);
+			$controller->$action(isset($error) ? $error : null, $module, $action, $pageId, $search, $order, $from, $to, $countryID);		
+		?>
 	</body>
 </html>

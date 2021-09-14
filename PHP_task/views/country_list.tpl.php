@@ -1,4 +1,7 @@
-<?php include 'controllers/country_create.php'; ?>
+<?php
+	$controller = new country_controller($this->model);
+	$errors = $controller->createAction($module, $action, $pageId, $search, $order, $from, $to);
+?>
 <div class="d-flex flex-row-reverse mt-3">
 	<a class="btn btn-warning mr-3" style="width:150px;" href="index.php?module=country&action=list" role="button">Išvalyti filtrus</a>
 </div>

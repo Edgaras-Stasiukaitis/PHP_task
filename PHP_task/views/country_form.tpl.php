@@ -1,7 +1,7 @@
 <div class="container-sm pt-5" style="max-width: 650px;">
 	<div class="form-group col-lg-12">
 		<div class="alert alert-primary" role="alert">
-		  <h5 class="alert-heading">Redaguojama šalis: <?php echo $countriesObj->getCountry($id)['Name']; ?></h5>
+		  <h5 class="alert-heading">Redaguojama šalis: <?php echo $this->model->getCountry($id)['Name']; ?></h5>
 		</div>
 	</div>
 	<form method="post" class="pt-4">

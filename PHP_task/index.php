@@ -6,11 +6,8 @@ include 'models/countries.php';
 include 'models/cities.php';
 
 session_start();
-	
-$CountriesObj = new countries();
-$CitiesObj = new cities();
 
-$module = '';
+$module = 'country';
 if(isset($_GET['module'])) {
 	$module = mysql::escape($_GET['module']);
 }
@@ -25,9 +22,9 @@ if(isset($_GET['countryID'])) {
 	$countryID = mysql::escape($_GET['countryID']);
 }
 
-$action = '';
+$action = 'listAction';
 if(isset($_GET['action'])) {
-	$action = mysql::escape($_GET['action']);
+	$action = mysql::escape($_GET['action'])."Action";
 }
 
 $pageId = 1;
@@ -55,10 +52,18 @@ if(isset($_GET['to'])) {
 	$to = mysql::escape($_GET['to']);
 }
 
-$actionFile = "";
+$actionFile = "country_controller";
 if(!empty($module) && !empty($action)) {
-	$actionFile = "controllers/{$module}_{$action}.php";
+	$actionFile = "controllers/{$module}_controller.php";
 }
+
+$controllerName = "country_controller";
+if(!empty($module)) {
+	$controllerName = $module."_controller";
+}
+
+$model = '';
+$model = $controllerName == "country_controller" ? new countries() : new cities();
 	
 include 'views/main.tpl.php';
 
