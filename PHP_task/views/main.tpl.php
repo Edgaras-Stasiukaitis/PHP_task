@@ -34,7 +34,7 @@
 		<?php
 			file_exists($actionFile) ? include $actionFile : include 'controllers/country_controller.php';
 			$controller = new $controllerName($model);
-			$controller->$action(isset($error) ? $error : null, $module, $action, $pageId, $search, $order, $from, $to, $countryID);		
+			$controller->$action(isset($error) ? $error : null, $module, $action, $pageId, $search, $order, $from, $to, $countryID, $id);		
 		?>
 	</body>
 </html>

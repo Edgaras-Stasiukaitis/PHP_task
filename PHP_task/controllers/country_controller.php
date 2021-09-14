@@ -8,7 +8,7 @@ class country_controller{
 		$this->model = $model;
 	}
 	
-	public function listAction($error, $module, $action, $pageId, $search, $order, $from, $to, $countryID){
+	public function listAction($error, $module, $action, $pageId, $search, $order, $from, $to, $countryID, $id){
 		$elementCount = $this->model->getCountryListCount($search, $from, $to);
 
 		include 'utils/paging.class.php';
@@ -57,9 +57,8 @@ class country_controller{
 		return $errors;
 	}
 	
-	public function editAction(){
+	public function editAction($error, $module, $action, $pageId, $search, $order, $from, $to, $countryID, $id){
 		$errors = array();
-		global $id, $module, $action, $pageId, $search, $order, $from, $to;
 		if(!empty($_POST['submit'])) {
 			if($_POST['Name'] == '')
 				$errors['invalidName'] = true;
@@ -89,8 +88,7 @@ class country_controller{
 		return include 'views/country_form.tpl.php';
 	}
 	
-	public function deleteAction(){
-		global $id, $module, $action, $pageId, $search, $order, $from, $to;
+	public function deleteAction($error, $module, $action, $pageId, $search, $order, $from, $to, $countryID, $id){
 		if(!empty($id)) {
 			$this->model->deleteCities("({$id})");
 			$this->model->deleteCountry($id);

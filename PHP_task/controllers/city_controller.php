@@ -59,9 +59,8 @@ class city_controller{
 		return $errors;
 	}
 	
-	public function editAction(){
+	public function editAction($error, $module, $action, $pageId, $search, $order, $from, $to, $countryID, $id){
 		$errors = array();
-		global $id, $module, $action, $pageId, $search, $order, $from, $to, $countryID;
 		if(!empty($_POST['submit'])) {
 			if($_POST['Name'] == '')
 				$errors['invalidName'] = true;
@@ -92,8 +91,7 @@ class city_controller{
 		return include 'views/city_form.tpl.php';
 	}
 	
-	public function deleteAction(){
-		global $id, $module, $action, $pageId, $search, $order, $from, $to, $countryID;
+	public function deleteAction($error, $module, $action, $pageId, $search, $order, $from, $to, $countryID, $id){
 		if(!empty($id)) {
 			$this->model->deleteCity($id);
 			$_SESSION['deleted'] = true;
